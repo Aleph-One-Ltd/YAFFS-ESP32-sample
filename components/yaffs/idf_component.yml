@@ -1,0 +1,5 @@
+version: "0.1.0"
+description: "YAFFS filesystem component for ESP-IDF projects using raw NAND flash"
+license: "GPL-2.0-only"
+dependencies:
+  idf: ">=5.0"

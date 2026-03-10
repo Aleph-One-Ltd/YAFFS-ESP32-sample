@@ -1,0 +1,11 @@
+menu "YAFFS Filesystem"
+
+    config YAFFS_ENABLE_TRACE
+        bool "Enable YAFFS trace output"
+        default n
+        help
+            Enable trace messages for YAFFS debugging.
+            This can produce significant output and should only
+            be enabled when troubleshooting filesystem issues.
+
+endmenu
