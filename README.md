@@ -5,8 +5,6 @@ This repository contains two things:
 - an ESP-IDF component for the YAFFS filesystem in [`components/yaffs`](components/yaffs)
 - a sample ESP32 application in [`main`](main) that mounts YAFFS on a Winbond W25N04KV SPI NAND device
 
-The sample is intended to accompany a reference hardware design for ESP32 plus external SPI NAND, and to serve as a working integration example for turning the YAFFS component into a publishable ESP-IDF package.
-
 ## Current Status
 
 The project is already in a working state for the current reference setup:
@@ -16,7 +14,7 @@ The project is already in a working state for the current reference setup:
 - NAND device: `W25N04KV` (4 Gbit / 512 MB SPI NAND)
 - YAFFS mount, format, file create, file read, and directory listing are implemented in the sample app
 
-The reusable YAFFS code lives in the component. The hardware-specific NAND driver remains in the sample application, which is the intended split for publication.
+The reusable YAFFS code lives in the component. The hardware-specific NAND driver remains in the sample application.
 
 ## Repository Layout
 
@@ -36,8 +34,6 @@ The reusable YAFFS code lives in the component. The hardware-specific NAND drive
 - ESP-IDF / FreeRTOS OS glue
 - public headers
 - an example W25N driver under `components/yaffs/examples/`
-
-This is the part that should eventually be reusable from another ESP-IDF project.
 
 ### Sample Application
 
