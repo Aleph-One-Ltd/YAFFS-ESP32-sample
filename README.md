@@ -110,31 +110,17 @@ The larger main task stack is intentional. YAFFS operations and the current samp
 
 On boot the sample application:
 
-1. initializes YAFFS OS support
-2. creates a YAFFS device at `/flash`
-3. tries to mount it
-4. formats it if the first mount fails
-5. writes `/flash/test.txt`
-6. reads the file back
-7. lists the contents of `/flash`
-8. calls `yaffs_sync()`
+1. Initializes YAFFS OS support
+2. Creates YAFFS mounts for both flash chips
+3. Tests file read, write, copy and runs a quick benchmark
+4. calls `yaffs_sync()`
 
-Typical successful output includes total space and free space reports for the W25N04KV device.
+Successful output includes total space and free space reports for the W25N04KV device, plus read and write speeds
 
 ## Using the Component in Another Project
 
-The long-term publication model is:
-
 - keep `components/yaffs` as the reusable ESP-IDF component
 - keep board-specific NAND drivers outside the component
-- provide this repository as a sample app plus reference driver and reference hardware design
-
-A consuming project would typically:
-
-1. add the YAFFS component under `components/yaffs` or through the ESP-IDF component registry
-2. implement a NAND driver for its flash device
-3. create and register a `yaffs_dev`
-4. mount and use YAFFS through the normal `yaffs_*` file API
 
 The current W25N04KV driver should be treated as a reference implementation, not as a generic SPI NAND layer.
 
@@ -153,15 +139,7 @@ The current sample implements those hooks in [`main/w25n_yaffs_drv.c`](main/w25n
 
 ## Limitations of the Current Sample
 
-This repository is a working integration sample, not yet a polished public release.
-
-Known rough edges:
-
 - the sample NAND driver is hard-coded for one flash family and one GPIO assignment
-- the project currently mixes sample-app concerns and publishable-component concerns in one tree
-- the top-level repository still needs alignment with the planned component packaging and reference hardware publication
-
-Those are documentation and packaging issues more than filesystem issues; the basic YAFFS integration path is already in place.
 
 ## Licensing
 
@@ -175,11 +153,3 @@ See the YAFFS project site for licensing details:
 - <https://yaffs.net/>
 - <https://yaffs.net/documents/>
 
-## Next Cleanup Targets
-
-The obvious follow-on tasks after this README are:
-
-- split the W25N driver into a clearer reference-example form
-- make the component metadata suitable for ESP-IDF component publication
-- document the reference hardware design alongside the software example
-- replace hard-coded sample assumptions with explicit configuration where appropriate
